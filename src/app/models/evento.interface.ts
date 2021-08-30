@@ -8,8 +8,8 @@ export interface EventoInterface{
     motivoDeNoRealizacion: string;
     encuestaEvento: string;
     resultadosEncuesta: string;
-    idPrograma: string;
-    idEscuela: string;
+    idPrograma: string | null;
+    idEscuela: string | null;
     idOrganoInstitucional: string;
     idOrganizadorEvento: string;
 }

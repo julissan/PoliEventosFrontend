@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BorrareventoComponent } from './borrarevento.component';
+import { AgregarubicacionComponent } from './agregarubicacion.component';
 
-describe('BorrareventoComponent', () => {
-  let component: BorrareventoComponent;
-  let fixture: ComponentFixture<BorrareventoComponent>;
+describe('AgregarubicacionComponent', () => {
+  let component: AgregarubicacionComponent;
+  let fixture: ComponentFixture<AgregarubicacionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BorrareventoComponent ]
+      declarations: [ AgregarubicacionComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BorrareventoComponent);
+    fixture = TestBed.createComponent(AgregarubicacionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
