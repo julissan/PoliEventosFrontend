@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api/api.service';
 import { LoginInterface } from '../../models/login.interface';
+import { ResponseLoginInterface } from '../../models/responselogin.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,14 +18,29 @@ export class LoginComponent implements OnInit {
     contraseñaOrganizadorDirectivo: new FormControl('', Validators.required)
   })
 
-  constructor(private api:ApiService) { }
+  errorStatus: boolean = false;
+  errorMsg: any = "";
+
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onLogin(form: LoginInterface){
     this.api.onLogin(form).subscribe(data => {
-      console.log(data);
+      let dataResponse:ResponseLoginInterface = data;
+      if(dataResponse.status  == "200"){
+        if(dataResponse.esOrganizador && dataResponse.esDirectivo){
+          this.router.navigate(['rol']);
+        }else if(dataResponse.esOrganizador){
+          this.router.navigate(['home-organizador']);
+        }else if(dataResponse.esDirectivo){
+          this.router.navigate(['home-directivo']);
+        }
+      }else{
+        this.errorStatus = true;
+        this.errorMsg = dataResponse.response;
+      }
     });
   }
 
